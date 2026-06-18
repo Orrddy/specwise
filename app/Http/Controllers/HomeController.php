@@ -13,14 +13,12 @@ class HomeController extends Controller
         $categories = Category::orderBy('name')->get();
 
         // Featured: most viewed comparison
-        $featuredComparison = Comparison::with(['product1', 'product2'])
-            ->where('is_public', true)
+        $featuredComparison = Comparison::where('is_public', true)
             ->orderByDesc('view_count')
             ->first();
 
         // Trending: next 2 most viewed comparisons (excluding featured)
-        $trendingComparisons = Comparison::with(['product1', 'product2'])
-            ->where('is_public', true)
+        $trendingComparisons = Comparison::where('is_public', true)
             ->when($featuredComparison, fn($q) => $q->where('id', '!=', $featuredComparison->id))
             ->orderByDesc('view_count')
             ->limit(2)

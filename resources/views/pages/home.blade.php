@@ -67,16 +67,16 @@
                     <div class="flex-1 w-full flex items-center justify-between">
                         <div class="flex flex-col items-center">
                             <div class="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden mb-4 shadow-lg group-hover:scale-105 transition-transform">
-                                <img class="w-full h-full object-contain bg-white p-4" src="{{ $featuredComparison->product1->image_url ?? 'https://placehold.co/200x200?text=Product' }}" alt="{{ $featuredComparison->product1->name }}"/>
+                                <img class="w-full h-full object-contain bg-white p-4" src="{{ $featuredComparison->product1?->image_url ?? 'https://placehold.co/200x200?text=Product' }}" alt="{{ $featuredComparison->product1?->name ?? 'Product' }}"/>
                             </div>
-                            <span class="font-headline-md text-on-surface text-center">{{ $featuredComparison->product1->name }}</span>
+                            <span class="font-headline-md text-on-surface text-center">{{ $featuredComparison->product1?->name ?? 'Unknown' }}</span>
                         </div>
                         <div class="px-6 py-3 rounded-full bg-surface-container-highest font-mono-data text-primary font-bold">VS</div>
                         <div class="flex flex-col items-center">
                             <div class="w-32 h-32 md:w-48 md:h-48 rounded-2xl overflow-hidden mb-4 shadow-lg group-hover:scale-105 transition-transform">
-                                <img class="w-full h-full object-contain bg-white p-4" src="{{ $featuredComparison->product2->image_url ?? 'https://placehold.co/200x200?text=Product' }}" alt="{{ $featuredComparison->product2->name }}"/>
+                                <img class="w-full h-full object-contain bg-white p-4" src="{{ $featuredComparison->product2?->image_url ?? 'https://placehold.co/200x200?text=Product' }}" alt="{{ $featuredComparison->product2?->name ?? 'Product' }}"/>
                             </div>
-                            <span class="font-headline-md text-on-surface text-center">{{ $featuredComparison->product2->name }}</span>
+                            <span class="font-headline-md text-on-surface text-center">{{ $featuredComparison->product2?->name ?? 'Unknown' }}</span>
                         </div>
                     </div>
                     <div class="md:w-1/3 flex flex-col justify-center border-t md:border-t-0 md:border-l border-on-surface/5 pt-8 md:pt-0 md:pl-8">
@@ -98,15 +98,15 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex -space-x-4">
                             <div class="w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-md">
-                                <img class="w-full h-full object-cover" src="{{ $comparison->product1->image_url ?? 'https://placehold.co/48x48' }}" alt="{{ $comparison->product1->name }}"/>
+                                <img class="w-full h-full object-cover" src="{{ $comparison->product1?->image_url ?? 'https://placehold.co/48x48' }}" alt="{{ $comparison->product1?->name ?? 'Product' }}"/>
                             </div>
                             <div class="w-12 h-12 rounded-full border-2 border-white overflow-hidden shadow-md">
-                                <img class="w-full h-full object-cover" src="{{ $comparison->product2->image_url ?? 'https://placehold.co/48x48' }}" alt="{{ $comparison->product2->name }}"/>
+                                <img class="w-full h-full object-cover" src="{{ $comparison->product2?->image_url ?? 'https://placehold.co/48x48' }}" alt="{{ $comparison->product2?->name ?? 'Product' }}"/>
                             </div>
                         </div>
                         <span class="font-label-caps text-label-caps text-on-surface-variant">{{ $comparison->category_name ?? 'Products' }}</span>
                     </div>
-                    <h3 class="font-headline-md text-on-surface text-[18px] mb-2">{{ $comparison->product1->name }} vs {{ $comparison->product2->name }}</h3>
+                    <h3 class="font-headline-md text-on-surface text-[18px] mb-2">{{ $comparison->product1?->name ?? 'Unknown' }} vs {{ $comparison->product2?->name ?? 'Unknown' }}</h3>
                     <p class="text-[14px] text-on-surface-variant">{{ $comparison->tagline ?? 'Click to see the AI comparison.' }}</p>
                 </a>
                 @endforeach

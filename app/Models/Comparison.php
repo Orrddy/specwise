@@ -21,13 +21,13 @@ class Comparison extends Model
 
     public function user(): BelongsTo { return $this->belongsTo(\App\Models\User::class); }
 
-    public function product1(): BelongsTo
+    public function getProduct1Attribute()
     {
-        return $this->belongsTo(Product::class, 'product_ids->0');
+        return \App\Models\Product::find($this->product_ids[0] ?? null);
     }
 
-    public function product2(): BelongsTo
+    public function getProduct2Attribute()
     {
-        return $this->belongsTo(Product::class, 'product_ids->1');
+        return \App\Models\Product::find($this->product_ids[1] ?? null);
     }
 }
