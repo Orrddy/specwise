@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Price extends Model
+{
+    public $timestamps = false;
+    protected $fillable = ['product_id', 'retailer_id', 'price', 'currency', 'url', 'in_stock', 'scraped_at'];
+    protected $casts = ['price' => 'decimal:2', 'in_stock' => 'boolean', 'scraped_at' => 'datetime'];
+
+    public function product(): BelongsTo { return $this->belongsTo(Product::class); }
+    public function retailer(): BelongsTo { return $this->belongsTo(Retailer::class); }
+}
