@@ -16,3 +16,18 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+
+if (isset($_ENV['VERCEL_URL'])) {
+    $tmpPath = '/tmp/storage';
+    if (!is_dir($tmpPath)) {
+        mkdir($tmpPath, 0755, true);
+        mkdir($tmpPath . '/framework/views', 0755, true);
+        mkdir($tmpPath . '/framework/sessions', 0755, true);
+        mkdir($tmpPath . '/framework/cache', 0755, true);
+        mkdir($tmpPath . '/logs', 0755, true);
+        mkdir($tmpPath . '/app', 0755, true);
+    }
+    $app->useStoragePath($tmpPath);
+}
+
+return $app;
