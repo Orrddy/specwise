@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-if (isset($_ENV['VERCEL_URL'])) {
+if (isset($_SERVER['VERCEL_URL']) || getenv('VERCEL_URL') || getenv('VERCEL')) {
     $tmpPath = '/tmp/storage';
     if (!is_dir($tmpPath)) {
         mkdir($tmpPath, 0755, true);
@@ -26,6 +26,7 @@ if (isset($_ENV['VERCEL_URL'])) {
         mkdir($tmpPath . '/framework/cache', 0755, true);
         mkdir($tmpPath . '/logs', 0755, true);
         mkdir($tmpPath . '/app', 0755, true);
+        mkdir($tmpPath . '/bootstrap/cache', 0755, true);
     }
     $app->useStoragePath($tmpPath);
 }
